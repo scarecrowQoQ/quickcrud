@@ -1,0 +1,38 @@
+package com.tml.quickcrud.template.util;
+
+public class StringUtilsExt {
+    public static String toUnderScoreCase(String str) {
+        if (str == null) {
+            return null;
+        }
+        StringBuilder sb = new StringBuilder();
+        // 前置字符是否大写
+        boolean preCharIsUpperCase = true;
+        // 当前字符是否大写
+        boolean curreCharIsUpperCase = true;
+        // 下一字符是否大写
+        boolean nexteCharIsUpperCase = true;
+        for (int i = 0; i < str.length(); i++) {
+            char c = str.charAt(i);
+            if (i > 0) {
+                preCharIsUpperCase = Character.isUpperCase(str.charAt(i - 1));
+            } else {
+                preCharIsUpperCase = false;
+            }
+
+            curreCharIsUpperCase = Character.isUpperCase(c);
+
+            if (i < (str.length() - 1)) {
+                nexteCharIsUpperCase = Character.isUpperCase(str.charAt(i + 1));
+            }
+
+            sb.append(Character.toLowerCase(c));
+        }
+
+        return sb.toString();
+    }
+
+    public static boolean isNotEmpty(String str) {
+        return str != null && !str.isEmpty();
+    }
+}
